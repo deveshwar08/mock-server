@@ -9,7 +9,9 @@
                     <ul class='list-group'>
                         <% server.endpoints.forEach(endpoint => { %>
                             <li class='list-group-item'>
-                                <p><%- endpoint.modelname  %> </p><button class='btn btn-primary' onclick='addData(this)'>Add data to model</button>
+                                <p><%- endpoint.modelname  %> </p>
+                                <button class='btn btn-primary' onclick='addData(this)'>Add data to model</button>
+                                <button class='btn btn-danger' onclick='deleteModel(this)'>Delete model</button>
                             </li>
                         <% }) %> 
                     </ul>
@@ -36,7 +38,7 @@
             </div>
             <div class="create-model">
                 <h3>Create Model</h3>
-                <button onclick='addOption()'>Add option</button>
+                <button class='btn btn-ptimary' onclick='addOption()'>Add option</button>
                 <form id='create-model-form'>
                     <div class="form-group">
                         <button class='btn btn-success' type='submit'>Create</button>

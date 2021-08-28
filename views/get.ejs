@@ -1,6 +1,7 @@
 <%- include('partials/header.ejs') %>
  <div class="container no-flex" >
      <div class="get-all">
+         <h3>Get all</h3>
          <form id='get-all-form'>
              <div class="form-group">
                  <label for='servername'>Server Name: </label>
@@ -11,12 +12,15 @@
                 <input type='text' name='modelname' class='form-control' required/>
             </div>
             <div class="form-group">
-                <button type='submit'>Get all</button>
+                <button class='btn btn-success' type='submit'>Get all</button>
             </div>
          </form>
      </div>
-     
+     <br/>
+     <br/>
+     <br/>
      <div class="get-id">
+         <h3>Get id</h3>
         <form id='get-id-form'>
             <div class="form-group">
                 <label for='servername'>Server Name: </label>
@@ -31,7 +35,7 @@
                 <input type='text' name='id' class='form-control' required/>
             </div>
            <div class="form-group">
-               <button type='submit'>Get Id</button>
+               <button class='btn btn-success' type='submit'>Get Id</button>
            </div>
         </form>
      </div>

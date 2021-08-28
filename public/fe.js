@@ -4,6 +4,19 @@ function createEndPoint() {
 function createModel() {
     document.getElementsByClassName('create-model')[0].style.display = 'inline';
 }
+async function deleteModel(ele) {
+    console.log('deleting');
+    const modelname = ele.parentElement.firstElementChild.innerText;
+    const servername = ele.parentElement.parentElement.parentElement.firstElementChild.innerText;
+    const res = await fetch('/' + servername + '/model-schema/' + modelname, {
+        method: 'DELETE',
+        body: null,
+        headers: { 'Content-Type': 'application/json' }
+    });
+    const data = await res.json();
+    if(data == 'deleted')
+        window.location.reload();
+}
 async function addData(ele) {
     const modelname = ele.parentElement.firstElementChild.innerText;
     const servername = ele.parentElement.parentElement.parentElement.firstElementChild.innerText;
@@ -172,6 +185,7 @@ addDataForm.addEventListener('submit', async e => {
     }); 
 
     const data = await res.json();
-    console.log(data);
+    if(data == 'successs')
+        window.location.reload();
 
 })

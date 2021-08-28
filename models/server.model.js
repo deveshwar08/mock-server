@@ -15,7 +15,10 @@ const serverSchema = mongoose.Schema({
         unique: true,
         required: true
     },
-    admin: User.schema.obj.username,
+    admin: {
+        type: String,
+        required: true
+    },
     endpoints: [endPointSchema]
 });
 

@@ -9,7 +9,8 @@ router.route('/create-model')
     .post(requireAuth, serverControllers.modelPost);
 
 router.route('/:servername/model-schema/:modelname')
-    .get(requireAuth, serverControllers.modelSchemaGet);
+    .get(requireAuth, serverControllers.modelSchemaGet)
+    .delete(requireAuth, serverControllers.deleteData);
 
 router.route('/:servername/api/:modelname/all')
     .get(requireAuth, serverControllers.getDataAll);

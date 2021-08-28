@@ -104,8 +104,24 @@ module.exports = {
         try {
             await client.connect();
             const collection = client.db('mock-server').collection(modelname.toLowerCase());
-            collection.insertOne(...arr);
+            collection.insertOne({...arr});
             res.status(200).json("successs");
+        } catch (err) {
+            console.log(err);
+            res.status(400);
+        }
+    },
+    deleteData: async (req, res) => {
+        const servername = req.params.servername;
+        const modelname= req.params.modelname.toLowerCase();
+
+        const url = 'mongodb://localhost:27017';
+        const client = new MongoClient(url);
+        try {
+            await client.connect();
+            console.log("Deleting");
+            client.db('mock-server').collection(modelname).drop();
+            res.status(200).json("deleted");
         } catch (err) {
             console.log(err);
             res.status(400);
