@@ -18,9 +18,11 @@ app.use(cookieParser());
 
 const { requireAuth, checkUser} = require('./middleware/auth.middleware');
 const authRoutes = require('./routes/auth.routes');
+const serverRoutes = require('./routes/server.routes');
 app.use('*', checkUser);
 app.get('/',requireAuth, (req, res) => res.render('index'));
 app.use('/', authRoutes);
+app.use('/', requireAuth, serverRoutes);
 
 
 const port = 5000;
