@@ -82,7 +82,7 @@ module.exports = {
             MongoClient.connect(url, (err, db) => {
                 if(!err){
                     var dbname = db.db('mock-server');
-                    dbname.collection(modelname.toLowerCase()).findOne({_id: id}, (err, result) => {
+                    dbname.collection(modelname.toLowerCase()).findOne({_id: mongoose.Types.ObjectId(id)}, (err, result) => {
                         if(!err){
                             console.log(result);
                             res.send(result);
@@ -104,7 +104,7 @@ module.exports = {
         try {
             await client.connect();
             const collection = client.db('mock-server').collection(modelname.toLowerCase());
-            collection.insertOne({...arr});
+            collection.insertOne(...arr);
             res.status(200).json("successs");
         } catch (err) {
             console.log(err);

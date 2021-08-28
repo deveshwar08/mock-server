@@ -3,6 +3,10 @@
     flex-direction: row;
     width: 100%;
 }
+.no-flex {
+    display: inline;
+    width: 100%;
+}
 #panel {
     width: 25%;
 }

@@ -24,6 +24,9 @@ app.use('*', checkUser);
 app.use('/', indexRoute);
 app.use('/', authRoutes);
 app.use('/', requireAuth, serverRoutes);
+app.get('/get',requireAuth, (req, res) => {
+    res.render('get');
+})
 
 
 const port = 5000;
