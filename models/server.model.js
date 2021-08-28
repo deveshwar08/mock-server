@@ -1,14 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('./user.model');
 
-const endPointSchema = mongoose.Schema({
-    endpoint: {
-        type: String,
-        unique: true,
-        required: true
-    }
-})
-
 const serverSchema = mongoose.Schema({
     servername: {
         type: String,
@@ -16,7 +8,7 @@ const serverSchema = mongoose.Schema({
         required: true
     },
     admin: User.schema.obj.username,
-    endpoints: [endPointSchema]
+    endpoints: [mongoose.Schema.Types.Mixed]
 });
 
 const Server = mongoose.model('server', serverSchema);

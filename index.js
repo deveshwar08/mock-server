@@ -19,8 +19,9 @@ app.use(cookieParser());
 const { requireAuth, checkUser} = require('./middleware/auth.middleware');
 const authRoutes = require('./routes/auth.routes');
 const serverRoutes = require('./routes/server.routes');
+const indexRoute = require('./routes/index.route');
 app.use('*', checkUser);
-app.get('/',requireAuth, (req, res) => res.render('index'));
+app.use('/', indexRoute);
 app.use('/', authRoutes);
 app.use('/', requireAuth, serverRoutes);
 

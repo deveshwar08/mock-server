@@ -1,11 +1,13 @@
 function createEndPoint() {
     document.getElementsByClassName('create-endpoint')[0].style.display = 'inline';
-    console.log(document.getElementsByClassName('create-endpoint')[0].style.display);
+}
+function createModel(){
+    document.getElementsByClassName('create-model')[0].style.display = 'inline';
 }
 
 function addOption(){
-    let form = document.querySelector('#create-model-form');
-    let option = Number(form.children.length) + 1;
+    let form = createModelForm;
+    let option = Number(form.children.length);
     let div = document.createElement('div');
     div.className = 'form-group';
     let fieldSet = document.createElement('fieldset');
@@ -66,3 +68,26 @@ createEndPointForm.addEventListener('submit', async e=> {
     if(data.servername)
         window.location.reload();
 });
+const createModelForm = document.querySelector('#create-model-form');
+createModelForm.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    let arr = [];
+    for(let i = 3; i < createModelForm.children.length; i++)
+    {
+        let obj = {"key": "", "type": ""};
+        console.log(i);
+        obj["key"] = createModelForm.children[i].firstElementChild.children[1].children[1].value;
+        obj["type"] =  createModelForm.children[i].firstElementChild.children[2].children[1].value;
+        arr.push(obj);
+    }
+    let servername = createModelForm.children[2].children[1].value;
+    let modelname = createModelForm.children[1].children[1].value;
+    console.log(servername, modelname,arr);
+    const res = await fetch('/create-model',{
+        method: 'POST',
+        body: JSON.stringify({servername, modelname, arr}),
+        headers: {'Content-Type':'application/json'}
+    });
+
+})

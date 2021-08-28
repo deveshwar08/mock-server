@@ -3,7 +3,19 @@
         <div id='panel'>
             <button onclick='createEndPoint()'>Add a new base endpoint</button>
             <button onclick='createModel()'>Add a new schema</button>
-
+            <% if(servers.length > 0){ servers.forEach(server => {%>
+                <div class="row">
+                    <h5><%- server.servername %></h3>
+                    <ul>
+                        <% server.endpoints.forEach(endpoint => { %>
+                            <li>
+                                <p><%- endpoint.type %> </p>
+                                <p><%- endpoint.name  %> </p>
+                            </li>
+                        <% }) %> 
+                    </ul>
+                </div> 
+                <% });}%>
         </div>
         <div id='body'>
             <div class='create-endpoint'>
@@ -27,7 +39,25 @@
                 <h3>Create Model</h3>
                 <button onclick='addOption()'>Add option</button>
                 <form id='create-model-form'>
-
+                    <div class="form-group">
+                        <button type='submit'>Create</button>
+                    </div>
+                    <div class="form-group">
+                        <label for='modelname'>Model Name: </label>
+                        <input type='text' name='modlename' required/>
+                    </div>
+                    <div class="form-group">
+                            <% if(servers.length > 0){%>
+                            <label for='servername'>Server name:</label>
+                            <select name='servername' required>
+                            <% servers.forEach(server => {%> 
+                                <option value='<%- server.servername %>'><%-server.servername %></option>
+                            <% }); %>
+                            </select>
+                            <%} else { %>
+                                <p class='text-warning'>Create a server first</p>
+                            <% } %>  
+                    </div>
                     <div class="form-group">
                         <fieldset>
                             <legend>Option</legend>
